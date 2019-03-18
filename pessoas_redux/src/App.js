@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import { hello } from './actions'
 
 import { connect } from 'react-redux'
@@ -14,25 +13,14 @@ class App extends Component {
   }
   onClickBtn = () => {
     this.props.myComponentAction(this.state)
-    console.log('Executando o Action')
+    //console.log('Executando o Action')
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <p>{(this.props.msg)}</p>
            <button onClick={ () => this.onClickBtn() }>Chamar a Action</button>
         </header>
       </div>
@@ -41,9 +29,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  //console.log(state.msg)
   return {
-    myMsg: state.msg,
+    msg: state.msg,
     data: state.data
   }
 }
