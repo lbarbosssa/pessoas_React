@@ -5,7 +5,7 @@ import { clear } from "../actions";
 class BtnLimpar extends Component {
   onClickBtn = () => {
     this.props.myComponentAction();
-    //console.log('Executando o Action')
+
   };
   render() {
     return (
@@ -23,8 +23,7 @@ class BtnLimpar extends Component {
 const mapStateToProps = state => {
   //console.log(state.msg)
   return {
-    pessoas: state.pessoas,
-    msg: state.msg
+    pessoas: state.pessoas
   };
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-import { setList } from './actions'
+import { getList } from './actions'
 
 import './App.css';
 import MyInput from './componentes/MyInput';
@@ -12,10 +12,6 @@ class App extends Component {
     super(props)
      this.state ={ name: 'Lucas' }
 
-  }
-  onClickBtn = () => {
-    this.props.myComponentAction(this.state)
-    //console.log('Executando o Action')
   }
 
   render() {
@@ -39,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    myComponentAction: (data) => dispatch(setList(data))
+    myComponentAction: () => dispatch(getList())
   }
 }
 
