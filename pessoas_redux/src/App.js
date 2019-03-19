@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { hello } from './actions'
 
 import { connect } from 'react-redux'
+import { setList } from './actions'
 
 import './App.css';
+import MyInput from './componentes/MyInput';
+import List from './componentes/List';
 
 class App extends Component {
   constructor(props){
@@ -17,12 +19,12 @@ class App extends Component {
   }
 
   render() {
+    const full = { height: "100vh" };
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>{(this.props.msg)}</p>
-           <button onClick={ () => this.onClickBtn() }>Chamar a Action</button>
-        </header>
+      <div className="flex" style={!this.props.pessoas ? full : null}>
+        <div className="content">
+           {this.props.pessoas ? <List pessoas={this.props.pessoas} /> : <MyInput />}
+        </div>
       </div>
     );
   }
@@ -31,13 +33,13 @@ class App extends Component {
 const mapStateToProps = (state) => {
   //console.log(state.msg)
   return {
-    msg: state.msg,
-    data: state.data
+    pessoas: state.pessoas
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    myComponentAction: (data) => dispatch(hello(data))
+    myComponentAction: (data) => dispatch(setList(data))
   }
 }
 

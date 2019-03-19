@@ -1,14 +1,24 @@
 //ACTION TYPE
-const HELLO =  'HELLO'
+const SET_LIST = "SET_LIST";
+const CLEAR = "CLEAR";
 
 //ACTION CREATORS
-export const hello = (data) => {
-    //console.log('dados Hello -> ', data)
-    return {
-        type: HELLO,
-        payload: {
-            msg: 'Redux deu certo',
-            data
-        }
+export const setList = pessoas => {
+  console.log("Action setList ->", pessoas);
+  return {
+    type: SET_LIST,
+    payload: {
+      pessoas
     }
-}
+  };
+};
+
+export const clear = () => {
+  console.log("Action  para limpar");
+  return {
+    type: CLEAR,
+    payload: {
+      pessoas: null
+    }
+  };
+};
