@@ -4,9 +4,9 @@ import { clear } from "../actions";
 
 class BtnLimpar extends Component {
   onClickBtn = () => {
-    this.props.myComponentAction();
+    this.props.myComponentAction({msg: 'Lista limpa!', type: 'alert-info'});
+  }
 
-  };
   render() {
     return (
       <button
@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    myComponentAction: () => dispatch(clear())
+    myComponentAction: (data) => dispatch(clear(data))
   };
 };
 

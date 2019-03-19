@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
-import axios from 'axios'
+import axios from "axios";
 
-import url from '../api_url'
+import url from "../api_url";
 
 import { connect } from "react-redux";
-import { setList } from "../actions";
+import { setList, clear } from "../actions";
 
 import Loading from "./Loading";
+import Alert from "./Alert";
 
 class MyForm extends Component {
   constructor(props) {
@@ -17,17 +18,20 @@ class MyForm extends Component {
   getValue(e) {
     e.preventDefault();
     this.props.myComponentAction();
-     axios
-       .get(`${url}/api?nat=br&results=${this.qnt.value}`)
-       .then(data => {
-         //this.setState({loading: false})
-         this.props.myComponentAction(data.data.results);
-       })
-       .catch(error => {
-         this.props.myComponentAction();
-         console.log(error);
-       });
-    
+    axios
+      .get(`${url}/api?nat=br&results=${this.qnt.value}`)
+      .then(data => {
+        //this.setState({loading: false})
+        setTimeout(() => {
+          this.props.myComponentAction(data.data.results);
+        }, 1000);
+      })
+      .catch(error => {
+        setTimeout(() => {
+          this.props.clearList({msg: 'Algo deu Errado :/', type: 'alert-danger'});
+        }, 1000);
+        console.log(error);
+      });
   }
 
   render() {
@@ -55,6 +59,7 @@ class MyForm extends Component {
             </div>
           </div>
         )}
+            {this.props.alert? <Alert data={this.props.alert}/> : null}
       </form>
     );
   }
@@ -64,12 +69,14 @@ const mapStateToProps = state => {
   //console.log(state.msg)
   return {
     pessoas: state.pessoas,
-    loading: state.loading
+    loading: state.loading,
+    alert: state.alert,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    myComponentAction: data => dispatch(setList(data))
+    myComponentAction: data => dispatch(setList(data)),
+    clearList: data => dispatch(clear(data))
   };
 };
 

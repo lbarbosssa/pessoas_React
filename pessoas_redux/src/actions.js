@@ -20,10 +20,11 @@ export const getList = () => {
   };
 };
 
-export const clear = () => {
-  console.log("Action  para limpar");
+export const clear = (alert) => {
   return {
     type: CLEAR,
-    payload: {}
+    payload: {
+      alert
+    }
   };
 };
