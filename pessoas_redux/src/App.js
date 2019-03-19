@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getList } from './actions'
 
 import './App.css';
-import MyInput from './componentes/MyInput';
+import MyForm from './componentes/MyForm'
 import List from './componentes/List';
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="flex" style={!this.props.pessoas ? full : null}>
         <div className="content">
-           {this.props.pessoas ? <List pessoas={this.props.pessoas} /> : <MyInput />}
+           {this.props.pessoas ? <List pessoas={this.props.pessoas} /> : <MyForm />}
         </div>
       </div>
     );

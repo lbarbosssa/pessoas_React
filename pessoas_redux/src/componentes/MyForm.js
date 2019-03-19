@@ -2,12 +2,14 @@ import React, { Component } from "react";
 
 import axios from 'axios'
 
+import url from '../api_url'
+
 import { connect } from "react-redux";
 import { setList } from "../actions";
 
 import Loading from "./Loading";
 
-class MyInput extends Component {
+class MyForm extends Component {
   constructor(props) {
     super(props);
     this.getValue = this.getValue.bind(this);
@@ -16,7 +18,7 @@ class MyInput extends Component {
     e.preventDefault();
     this.props.myComponentAction();
      axios
-       .get(`https://randomuser.me/api?nat=br&results=${this.qnt.value}`)
+       .get(`${url}/api?nat=br&results=${this.qnt.value}`)
        .then(data => {
          //this.setState({loading: false})
          this.props.myComponentAction(data.data.results);
@@ -74,4 +76,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MyInput);
+)(MyForm);
